@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Simple IDS Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+  </head>
+  <body>
+    <main class="container">
+      <h1>Intrusion Detection Dashboard</h1>
+
+      <section class="cards">
+        <article class="card">
+          <h3>Monitoring</h3>
+          <p id="monitoring-state">Stopped</p>
+        </article>
+        <article class="card">
+          <h3>Total Events</h3>
+          <p id="total-events">0</p>
+        </article>
+        <article class="card">
+          <h3>Total Alerts</h3>
+          <p id="total-alerts">0</p>
+        </article>
+        <article class="card">
+          <h3>High Severity Alerts</h3>
+          <p id="high-alerts">0</p>
+        </article>
+      </section>
+
+      <section class="controls">
+        <button id="start-btn">Start Monitoring</button>
+        <button id="stop-btn" class="secondary">Stop Monitoring</button>
+      </section>
+
+      <section class="rules">
+        <h2>Rule Settings</h2>
+        <form id="rules-form">
+          <label>
+            Failed Login Threshold
+            <input type="number" id="failed_login_threshold" min="1" required />
+          </label>
+          <label>
+            Failed Login Window (seconds)
+            <input type="number" id="failed_login_window_seconds" min="1" required />
+          </label>
+          <label>
+            Burst Threshold
+            <input type="number" id="burst_threshold" min="1" required />
+          </label>
+          <label>
+            Burst Window (seconds)
+            <input type="number" id="burst_window_seconds" min="1" required />
+          </label>
+          <button type="submit">Save Rules</button>
+        </form>
+      </section>
+
+      <section>
+        <h2>Recent Alerts</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Time</th>
+              <th>Severity</th>
+              <th>Source</th>
+              <th>Rule</th>
+            </tr>
+          </thead>
+          <tbody id="alerts-body"></tbody>
+        </table>
+      </section>
+
+      <section>
+        <h2>Recent Events</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Time</th>
+              <th>Source</th>
+              <th>Type</th>
+              <th>Path</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody id="events-body"></tbody>
+        </table>
+      </section>
+    </main>
+
+    <script src="{{ url_for('static', filename='app.js') }}"></script>
+  </body>
+  </html>
